@@ -1,0 +1,21 @@
+{
+    "tasks": [
+        {
+            "client_id": "client1",
+            "task_type": "resize",
+            "image_name": "cake.jpg",
+            "resize_dimensions": [100, 100]
+        },
+        {
+            "client_id": "client2",
+            "task_type": "grayscale",
+            
+            "image_name": "kitty.jpg"
+        },
+        {
+            "client_id": "client3",
+            "task_type": "edge_detect",
+            "image_name": "tower.jpg"
+        }
+    ]
+}
