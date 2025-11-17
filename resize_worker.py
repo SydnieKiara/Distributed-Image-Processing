@@ -2,6 +2,7 @@ from PIL import Image
 import os
 import socket
 import pickle
+from config import WORKERS   # 👈 NEW: shared config for host/port
 
 def process_resize(image_path, output_path, dimensions):
     """
@@ -29,10 +30,15 @@ def handle_resize_task(task):
     process_resize(input_image_path, output_image_path, resize_dimensions)
     return {"client_id": client_id, "status": "resize processed", "output": output_image_path}
 
-def start_resize_worker(host="127.0.0.1", port=5002):
+def start_resize_worker():
     """
-    Start a socket server for the resize worker.
+    Start a socket server for the resize worker using the
+    host and port defined in config.WORKERS['resize'].
     """
+    worker_cfg = WORKERS["resize"]
+    host = worker_cfg["host"]
+    port = worker_cfg["port"]
+
     print(f"[Resize Worker] Listening on {host}:{port}...")
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:

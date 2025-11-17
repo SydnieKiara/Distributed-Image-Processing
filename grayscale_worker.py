@@ -2,6 +2,7 @@ from PIL import Image
 import os
 import socket
 import pickle
+from config import WORKERS   
 
 def process_grayscale(image_path, output_path):
     """
@@ -28,10 +29,15 @@ def handle_grayscale_task(task):
     process_grayscale(input_image_path, output_image_path)
     return {"client_id": client_id, "status": "grayscale processed", "output": output_image_path}
 
-def start_grayscale_worker(host="127.0.0.1", port=5001):
+def start_grayscale_worker():
     """
-    Start a socket server for the grayscale worker.
+    Start a socket server for the grayscale worker using the
+    host and port defined in config.WORKERS['grayscale'].
     """
+    worker_cfg = WORKERS["grayscale"]
+    host = worker_cfg["host"]
+    port = worker_cfg["port"]
+
     print(f"[Grayscale Worker] Listening on {host}:{port}...")
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
