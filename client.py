@@ -4,12 +4,12 @@ import os
 
 TASK_FILE = "sample_task.json"
 RESULTS_DIR = "client_results"
-SERVER_HOST = "127.0.0.1"  # Replace with controller's IP
-SERVER_PORT = 65432        # Port to connect to controller
+SERVER_HOST = "172.20.208.110"  # Replace with controller's IP
+SERVER_PORT = 65432       # Port to connect to controller
 
 def load_tasks(task_file):
     """
-    Load tasks from a JSON file.
+    Load tasks from a JSON file.a
     """
     if not os.path.exists(task_file):
         print(f"Task file '{task_file}' not found.")
